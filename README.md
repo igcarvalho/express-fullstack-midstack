@@ -53,9 +53,3 @@ Estrutura organizada para escalar o projeto facilmente
 
 O arquivo .gitignore já está configurado para ignorar node_modules
 
-📄 Licença
-Este projeto está licenciado sob a licença MIT.
-
-yaml
-Copiar
-Editar
