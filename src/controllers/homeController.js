@@ -9,9 +9,11 @@ HomeModel.create({
 .catch(e => console.log(e));
 
 exports.paginaInicial = (req, res) => {
+    console.log(req.session.usuario);
     res.render('index');
+    return;
 }
 exports.tratarPost = (req, res) => {
     res.send(req.body);
-    res.send('Login efetuado com sucesso!');
+    return; 
 }
