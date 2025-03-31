@@ -4,8 +4,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js --ignore public --ignore frontend",
-    "dev": "webpack -w"
+    "start": "nodemon",
+    "dev": "webpack -w",
+    "fix-port": "kill -9 $(lsof -t -i :3000 || echo 0)"
   },
   "keywords": [],
   "author": "",

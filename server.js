@@ -46,12 +46,40 @@ app.use(flash());
   app.use(middlewareGlobal);
   app.use(routes);
 
-  app.on('pronto', () => {
-    app.listen(3000, () => {
-      console.log('Acessar http://localhost:3000');
-      console.log('Servidor executando na porta 3000');
+  const http = require('http');
+
+let server;
+
+app.on('pronto', () => {
+  const PORT = process.env.PORT || 3000;
+  server = http.createServer(app);
+  server.listen(PORT, () => {
+    console.log(`Acessar http://localhost:${PORT}`);
+    console.log(`Servidor executando na porta ${PORT}`);
+  });
+});
+
+// Encerrar corretamente quando o nodemon reiniciar
+process.on('SIGTERM', () => {
+  console.log('Desligando servidor...');
+  if (server) {
+    server.close(() => {
+      console.log('Servidor finalizado com sucesso.');
+      process.exit(0);
     });
-  })
+  }
+});
+
+process.on('SIGINT', () => {
+  console.log('Encerrando com Ctrl+C...');
+  if (server) {
+    server.close(() => {
+      console.log('Servidor encerrado.');
+      process.exit(0);
+    });
+  }
+});
+
 
 
 
